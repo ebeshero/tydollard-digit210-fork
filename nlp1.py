@@ -15,3 +15,7 @@ avatarWords = nlp(wordstrings)
 for token in avatarWords:
     # if token.pos_ == "VERB":
     print(token.text, "---->", token.pos_, ":::::", token.lemma_)
+
+
+
+
