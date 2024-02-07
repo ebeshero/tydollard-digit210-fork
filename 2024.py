@@ -32,11 +32,11 @@ except OSError:
     nlp = spacy.load('en_core_web_md')
 
 # Check and install pyarrow
-try:
-    import pyarrow
-except ModuleNotFoundError:
-    print("pyarrow module not found. Installing...")
-    os.system('pip install pyarrow')
+# try:
+#     import pyarrow
+# except ModuleNotFoundError:
+#     print("pyarrow module not found. Installing...")
+#     os.system('pip install pyarrow')
 
 from xml.dom.minidom import parseString
 
@@ -45,7 +45,11 @@ new_word_of_interest = 'exciting'
 
 # Identify the directory with text files to explore
 workingDir = os.getcwd()
-CollPath = os.path.join(workingDir, 'textCollection')
+# CollPath = os.path.join(workingDir, 'textCollection')
+# 2024-02-07 ebb: You need to have a folder with input text files.
+# I just created one in your repo, and copied the two text files you had into it.
+# I named it "input-files" so now I point the CollPath to that folder:
+CollPath = os.path.join(workingDir, 'input-files')
 
 # Clear existing output folders
 for folder in ['JSON-output', 'csv-output', 'xml-output']:
@@ -75,6 +79,8 @@ for file in sorted(os.listdir(CollPath)):
         filepath = f"{CollPath}/{file}"
         filename = os.path.splitext(os.path.basename(filepath))[0]
         similarityData = readTextFiles(filepath)
+        # ebb: Okay, somewhere you need to return output!
+        print(similarityData)
 
         # Output to JSON
         with open(f'JSON-output/{filename}.json', 'w') as fp:
